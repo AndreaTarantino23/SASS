@@ -1,0 +1,55 @@
+@use "sass:color";
+@use "functions.scss";
+@use "variables.scss";
+
+$color-primary: red;
+$color-secondary: blue;
+$color-tertiary: green;
+
+
+@mixin palette ($color, $border-color: green, $font-size: 1rem){
+    color: $color;
+    border: 1px solid $border-color;
+    font-size: $font-size;
+}
+
+.exercise {
+border: function.toRem(variables.$standard-border-px) solid variables.$color-primary;
+
+    .title-exercise {
+        color: variables.$color-tertiary;
+        text-align: center;
+        text-decoration: underline;
+        text-decoration-color: variables.$color-secondary;
+        text-decoration-thickness: function.toRem(1)
+    } 
+
+    $margin: functions.toRem(16);
+    section {
+    margin: $margin;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+    article {
+    text-align: center;
+    border: function.toRem(variables.$standard-border-px) solid variables.$color-tertiary;
+    padding: function.toRem(5);
+    &.red {
+        @include palette(red, green, 1rem);
+    }
+
+    &.blue {
+        @include palette(blue, green, 1rem);
+    }
+    &.green {
+        padding: function.toRem(5);
+        width: 100%;
+        @include palette(green, blue, function.toRem(24));
+
+    }
+
+}
+
+}
