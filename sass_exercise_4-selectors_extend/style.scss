@@ -1,0 +1,63 @@
+@use "sass:color";
+@use "functions.scss";
+@use "variables.scss";
+
+
+@mixin palette ($color, $border-color: variables.$third-color, $font-size: 1rem){
+    color: $color;
+    border: functions.toRem(variables.$standard-border-px) solid $border-color;
+    font-size: $font-size;
+}
+
+%text {
+
+    color: variables.$third-color;
+    text-align: center;
+
+}
+
+
+.container {
+    border: functions.toRem(variables.$standard-border-px) solid variables.$first-color;
+    $margin: functions.toRem(16);
+
+    .title-exercise {
+        @extend %text;
+        text-decoration: underline;
+        text-decoration-color: variables.$second-color;
+        text-decoration-thickness: functions.toRem(1) ;
+    } 
+
+    h2 {
+        
+        @include palette(variables.$third-color, variables.$first-color, 1rem);
+        @extend %text;
+        margin: 0 40%;
+        padding: 1rem;
+
+    }
+
+    section {
+    margin: $margin;
+    display: flex;
+    flex-direction: row;
+    }
+
+    article {
+    
+        border: functions.toRem(1) solid variables.$third-color;
+        padding: functions.toRem(5);
+        &.red {
+        @include palette(variables.$first-color, variables.$third-color, 1rem);
+            }
+
+        &.blue {
+        @include palette(variables.$second-color, variables.$third-color, 1rem);
+        }
+        &.green {
+        padding: functions.toRem(5);
+        width: 100%;
+        @include palette(variables.$third-color, variables.$second-color, functions.toRem(24));
+        }
+    }
+}
